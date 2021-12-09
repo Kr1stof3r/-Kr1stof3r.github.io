@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+* {
+    font-family: 'Didact Gothic', sans-serif;
+}
+.nav2 > ul > li > a:link {color: white;}
+.nav2 > ul > li > a:visited {color: white;}
+.nav2 > ul >li > a:hover {color:rgb(253,221,92);}
+
+.nav3 > ul > li > a:link {color: white;}
+.nav3 > ul > li > a:visited {color: white;}
+.nav3 > ul >li > a:hover {color:rgb(253,221,92);}
+
+header {
+    height: 159.31px;
+}
+
+
+img {
+    width: 100%;
+    height: auto;   
+    object-fit: cover;
+}
+body {
+    background-image: linear-gradient(rgb(197, 0, 0) 0%, rgb(77, 17, 17) 90%);
+}
+.sect1 {
+    background-image: linear-gradient(rgba(77, 17, 17, 0.75) 0%, rgba(197, 0, 0, 0.75) 90%);
+    color: white;
+}
+.sect2 {
+    background-image: linear-gradient(rgba(77, 17, 17, 0.75) 0%, rgba(197, 0, 0, 0.75) 90%);
+    display: grid;
+    margin: 0 auto;
+    
+}
+
+figure {
+    margin: 0%;   
+}
+figure > img {
+    max-height: 200px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.freysteinn {
+    background-color: rgb(124, 19, 19);
+}
+
+@media screen and (min-width: 48em){
+    body {
+        padding: 0px;
+        margin: 0px;
+
+    }
+    .contain {
+        margin: 0 auto;
+        max-width: 60em;
+    }
+
+    .col-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+    }
+    .col-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+    }
+
+.wrapper {
+    display: grid;
+
+    grid-template-areas: 
+        "header"
+        "sect1"
+        "sect2"
+        "footer"
+    ;
+
+    padding: 0px;
+    margin: 0px;
+
+        
+    
+}
+
+header {
+    grid-area:header;
+    color:white;
+    margin: 10px;
+    ;
+}
+
+    header > h1 {
+        padding: 25% 0;
+        text-align: center;
+        font-size: 270%;
+        margin: 0;
+        }
+
+
+.sect1 {
+    grid-area: sect1;
+    display: grid;
+    grid-template-areas:
+        "main0"
+    ;
+    
+    padding: 10px;
+    margin: 0px;
+    
+}
+    .main0 {
+        grid-area: main0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "main1 main2"
+    }
+
+        .main1 {
+            grid-area: main1;
+        }
+
+        .main2 {
+            grid-area: main2;
+        }
+
+.sect2 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 6px;
+    
+}
+footer {
+    grid-area: footer;
+    color: white;
+    margin: 10px;
+
+}
+}
+
+
+@media screen and (min-width: 37.5em) and (max-width: 47.9em){
+    body {
+        padding: 0px;
+        margin: 0px;
+
+    }
+    .contain {
+        margin: 0 auto;
+    }
+
+
+
+.wrapper {
+    display: grid;
+
+    grid-template-areas: 
+        "header"
+        "sect1"
+        "sect2"
+        "footer"
+    ;
+    
+    padding: 0px;
+    margin: 0px;
+
+        
+    
+}
+
+header {
+    grid-area:header;
+    color:white;
+    display: grid;
+    margin: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+        "h11 h11 div"
+        "div div div"
+    ;
+    height: 159.31px;   
+}
+    header > h1 {
+        grid-area: h11;
+        text-align: center;
+        font-size: 270%;
+
+    }
+
+    .headdiv {
+        grid-area: div;
+        text-align: right;
+        
+    }
+    .headdiv > nav > a {    
+        padding:15px;
+
+    } 
+    .headdiv > p {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+    .topnav {
+        padding-top: 100px;
+    }
+    .topnav > a {
+        border: 1px solid #040d52;
+        background: #0b358b;
+        padding: 6px;
+        margin: 0px 20px;
+        vertical-align: bottom;
+
+        
+    }
+
+    .topnav > a:hover {
+        background-color: rgba(253,221,92,0.25);
+    }
+    .topnav > a:visited {
+        color: white;
+
+    }
+    .topnav > a:link {
+        color: white;
+    }
+
+
+.sect1 {
+    grid-area: sect1;
+    display: grid;
+    grid-template-areas:
+        "main0"
+    ;
+    padding: 10px;
+    margin: 0px;
+    
+}
+    .main0 {
+        grid-area: main0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "main1 main2"
+    }
+
+        .main1 {
+            grid-area: main1;
+        }
+
+        .main2 {
+            grid-area: main2;
+        }
+
+    .sect2 {
+        grid-template-columns: repeat(2 , 1fr);
+        grid-gap: 6px;
+        
+    }
+
+footer {
+    grid-area: footer;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    color: white;
+    padding: 10px;
+
+}
+
+}
+
+@media screen and (max-width: 37.5em){
+    body {
+        padding: 0px;
+        margin: 0px;
+
+    }
+    .contain {
+        margin: 0 auto;
+    }
+
+    .col-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+.wrapper {
+    display: grid;
+
+    grid-template-areas: 
+        "header"
+        "sect1"
+        "sect2"
+        "footer"
+    ;
+    
+    padding: 0px;
+    margin: 0px;
+
+        
+    
+}
+
+header {
+    grid-area:header;
+    color:white;
+    display: grid;
+    margin: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+        "h11 h11 div"
+        "div div div"
+    ;
+    height: 159.31px;   
+}
+    header > h1 {
+        grid-area: h11;
+        text-align: center;
+        font-size: 250%;
+
+    }
+
+    .headdiv {
+        grid-area: div;
+        text-align: right;
+        
+    }
+    .headdiv > nav > a {    
+        padding:10  px;
+
+    } 
+    .headdiv > p {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+    .topnav {
+        padding-top: 100px;
+    }
+    .topnav > a {
+        border: 1px solid #040d52;
+        background: #0b358b;
+        padding: 6px;
+        margin: 0px 20px;
+        vertical-align: bottom;
+
+        
+    }
+
+    .topnav > a:hover {
+        background-color: rgba(253,221,92,0.25);
+    }
+    .topnav > a:visited {
+        color: white;
+
+    }
+    .topnav > a:link {
+        color: white;
+    }
+
+
+    .topnav > a:hover {
+        background-color: rgba(253,221,92,0.25);
+    }
+    .topnav > a:visited {
+        color: white;
+
+    }
+    .topnav > a:link {
+        color: white;
+    }
+
+
+.sect1 {
+    grid-area: sect1;
+    display: grid;
+    grid-template-areas:
+        "main0"
+    ;
+    padding: 10px;
+    margin: 0px;
+    
+}
+    .main0 {
+        grid-area: main0;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr;
+        grid-template-areas:
+            "main1"
+            "main2"
+    }
+
+        .main1 {
+            grid-area: main1;
+        }
+
+        .main2 {
+            grid-area: main2;
+        }
+
+footer {
+    grid-area: footer;
+
+
+    color: white;
+    padding: 10px;
+
+}
+
+}

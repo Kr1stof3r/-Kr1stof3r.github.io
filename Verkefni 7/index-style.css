@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(131,150,144);
+}
+img {
+    width: 100%;
+    height: auto;  
+    object-fit: contain; 
+
+    
+}
+
+.container {
+    position: relative;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    
+}
+
+h1 {
+    margin: 0;
+    background-color: rgb(131,150,144);
+    text-align: center;
+    padding: 30px;
+}
+
+
+.topmenu {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+.topmenu > * {
+    background-color: rgb(108, 134, 126);
+    padding: 10px 20%;
+}
+
+li:hover {
+    background-color: rgb(131,150,144);
+    color: blue;
+}
+a:link {
+    color: black;
+    list-style: none;
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+    list-style: none;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 37.5em){
+    .topmenu {
+        flex-flow: column;
+    }
+    
+}
