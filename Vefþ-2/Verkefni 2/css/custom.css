@@ -143,6 +143,38 @@ table {
     float: left;
   }
 
+form {
+    margin-top: 30px;
+    padding: 7px ;
+    border: 1px solid #a9a9a9;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    font-size: 0.9em;
+    
+}
+
+div.col4060 {
+    grid-template-columns: 60% 40%;
+}
+form > div > fieldset > div {
+    padding: 10px;
+}
+label {
+    display: inline;
+}
+
+input[type="text"] {
+    padding: 1px;
+    padding-left: 3px;
+    margin-left: 5px;
+}
+input[placeholder] {
+    color: gray;
+}
+
+.submit {
+    margin: 0 auto
+}
 footer {
     background-color:rgba(20,164,127,0.7);
     max-width: 100%;
@@ -232,6 +264,9 @@ dl {
         grid-template-columns: 2fr 1fr;
     }
 
+    form > div > fieldset > div {
+        padding: 15px;
+    }
     #top > section > .simi { 
         display: block;
         transform: rotate(10deg); 
