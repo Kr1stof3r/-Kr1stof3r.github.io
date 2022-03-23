@@ -74,24 +74,74 @@
     margin: 0 auto 0 auto;
 }
 
-table, thead, tbody, th, td, tr { 
-    display: block; 
-}
 
 table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: 0;
+    table-layout: fixed;
+  }
 
-}
+  table caption {
+    font-size: 1.3em;
 
-th {
-    display:table-cell
+    margin: .5em 0 .75em;
+  }
+  
+  table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    table-layout: fixed;
+    width: 100%;
+  }
+  
+  table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+  th:first-child, td:first-child {
+    padding: 0.625em;
 
-}
+  }
 
-td {
-    display: table-cell;
-}
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+  }
 
-
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+  }
+  
+  table td::before {
+    content: attr(data-label);
+    float: left;
+  }
 
 footer {
     background-color:rgba(20,164,127,0.7);
@@ -121,29 +171,60 @@ dl {
 }
 @media screen and (min-width: 48em) {
 
-    
     table {
-        font-family: arial, sans-serif;
+        border: 0 0 1px solid 0;
         border-collapse: collapse;
         margin: 0 auto;
-        table-layout: auto; 
-        width: 90%;
-        
-      }
-    th {
-        font-weight: bold;
-        
-        
-    }
-    td, th {
-        
-        border: 0 0 1px 0;
+        padding: 0;
+        table-layout: fixed;
         text-align: left;
-        padding: 10px;
+        width: 85%;
+        font-size: 1.2em;
+      }
+      table thead {
+        border: initial;
+        clip: initial;
+        height: initial;
+        margin: initial;
+        overflow: initial;
+        padding: initial;
+        position: initial;
+        width: initial;
+    }
+
+      
+      table th,
+      table td {
+        padding: .625em;
+        text-align:left;
         
       }
 
-}
+ 
+      
+      table tr {
+        display: table-row;
+        margin-bottom: .625em;
+        padding: .35em;
+        border-bottom: 1px solid;
+      }
+      
+      table td {
+        display: table-cell;
+        font-size: .8em;
+        
+      }
+      table th,
+      table td {
+        padding: .625em;
+    
+      }
+      
+      table td::before {
+        display: none;
+    }
+    }
+  
 @media screen and (min-width: 60em) {
     #top > section {
         display: grid;
