@@ -6,10 +6,10 @@
     height: auto;
 }
 
-#top > section > .simi { 
+#landing > .simi { 
     display: none;
 }
-#top > section  {
+#landing  {
 
     display: grid;
     grid-template-columns: 1fr;
@@ -18,18 +18,18 @@
 
         
 }
-#top > section > div {
+#landing > div {
     display: grid;
     grid-template-rows: repeat(2 1fr);
 }
 
-#top > section > div > h1 { 
+#landing > div > h1 { 
 
     font-size: 2.5em;
     text-align: center;
     text-align: top; 
 }
-#top > section > div > .logo{ 
+#landing > div > .logo{ 
 
     margin-left: auto;
     margin-right: auto;
@@ -265,7 +265,7 @@ dl {
     }
   
 @media screen and (min-width: 60em) {
-    #top > section {
+    #landing {
         display: grid;
         grid-template-rows: 1fr;
         grid-template-columns: 2fr 1fr;
@@ -274,7 +274,7 @@ dl {
     form > div > fieldset > div {
         padding: 15px;
     }
-    #top > section > .simi { 
+    #landing > .simi { 
         display: block;
         transform: rotate(10deg); 
         padding-left: 40px;
