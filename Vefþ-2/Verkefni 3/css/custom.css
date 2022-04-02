@@ -1,5 +1,14 @@
 
 /*mobile*/
+
+.fela.fela {
+    display: none
+}
+
+span.icon::before {
+    margin: 3px;
+}
+
 .images {
     margin: 0 auto;
     width: 100%;
@@ -72,9 +81,7 @@
 #diy-butt {
     display: none;
 }
-.fela {
-    display: none
-}
+
 
 #letur {
     margin: 0 auto 0 auto;
