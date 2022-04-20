@@ -1,0 +1,120 @@
+
+
+.hamb {
+    display: inline-block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    height: auto;
+    width: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    font-size: 25px;
+    background-color: rgb(35,94,120);
+    z-index: 100;
+}
+.hamb:hover {
+    
+    -webkit-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+    transform: scale(1.15);
+}
+
+#tnav {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding-left: 5%;
+
+}
+
+.ulmenu {
+    list-style: none;
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 37px; 
+    width: 65%;
+    z-index: 60;
+
+
+}
+#main-nav {
+    display: none;}
+
+#main-nav:checked ~ .ulmenu {
+    display: inline;
+
+}
+
+.ribbon {
+    z-index: 50;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+nav {
+    width: fit-content;
+    padding: 0;
+    
+}
+
+.groov {
+    color: #fff;
+    margin: 5px;
+}
+
+
+.ulmenu > li >  a {
+    color: #fff;
+}
+
+.bil {
+    padding: 17px;
+}
+
+
+@media screen and (min-width: 60em) {
+    .hamb {
+        display: none;
+    }
+    #tnav {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+
+    #main-nav:checked ~ .ulmenu {
+        display: grid;
+    }
+    
+
+    #tnav > nav > ul{ 
+        grid-template-columns: repeat(5, auto);
+        display: grid;
+        position: initial;
+        left: initial;
+        top: initial;
+        margin: 0 auto; 
+        height: 100%;
+        width: auto;
+        align-items: center;
+        
+        
+    }
+    #tnav > nav > ul > li {
+        margin-bottom: 0;
+        display: block;
+        margin: 0 auto; 
+        padding: 0 auto;
+        
+    }
+    nav > ul > li > a {
+        display: block;
+        margin: auto;
+    }
+
+    
+}
