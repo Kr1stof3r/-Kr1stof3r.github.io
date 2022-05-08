@@ -2,15 +2,15 @@
 
 .hamb {
     display: inline-block;
-    position: fixed;
-    top: 10px;
+    position: fixed ;
+    top: 15px;
     left: 10px;
     height: auto;
     width: 40px;
     line-height: 40px;
-    border-radius: 50%;
-    font-size: 25px;
-    background-color: rgb(35,94,120);
+    
+    font-size: 40px;
+    
     z-index: 100;
 }
 .hamb:hover {
@@ -83,12 +83,15 @@ nav {
 }
 
 .navlogo {
-    height: 60px;
-    width: auto;
-    justify-self: start;
     display: block;
+    height: 35px;
+    width: auto;
     margin: 3px 0;
 
+}
+.logodiv {
+    display:flex;
+    justify-content: flex-end;
 }
 
 
@@ -133,5 +136,12 @@ nav {
         margin: auto;
     }
 
+    .navlogo {
+        height: 60px;
+    }
+    .logodiv {
+        
+        justify-content: flex-start;
+    }
     
 }
