@@ -1,3 +1,7 @@
+.bil {
+    height: 25px;
+}
+
 .fela {display:none}
 
 
@@ -10,6 +14,16 @@ span.icon::before {
     margin: 3px;
 }
 
+.hedd {
+    background-color: rgb(244, 139, 4);
+    height: 250px;
+    position: relative;
+    bottom: 15px;
+    text-align: center;
+    padding-top: 5px;
+} 
+.hedd > h1 {font-size: 275%;}
+
 footer {
     background-color: rgb(5,0,56);
     max-width: 100%;
@@ -19,7 +33,8 @@ footer {
 
 footer > div {
     display: grid;
-    grid-template-columns: 3fr 4fr;
+    grid-template-columns: 1fr;
+    width: fit-content; 
 
 }
 .socials {
@@ -27,7 +42,7 @@ footer > div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: fit-content;
-    margin-top: 5px;
+    margin-top: 20px;
 
     
 
@@ -74,3 +89,77 @@ dl {
     margin: 0;
 } 
 
+.landimg {
+    width: 100%;
+}
+.auto {
+      margin: 0 auto;
+}
+
+.kassar {
+    
+    justify-content: space-between;
+    
+    margin: 0px auto;
+    margin-bottom: 80px;
+}
+
+
+.kassi {
+    
+    border: 1px solid black;
+    border-radius: 50px;
+    width: 270px;
+    height: 400px;
+    background-color: rgb(97,155,102);
+    margin-bottom: 60px;
+    
+}
+.hringur {
+    width: 50%;
+    padding-top: 50%;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 40px;
+    background-color: rgb(255, 255, 255);
+    /* background-image: ; */
+}
+
+
+
+@media screen and (min-width: 30em) {
+    /* Larger than mobile */
+}
+
+@media screen and (min-width: 37.5em) {
+    /* Larger than phablet (also point when grid becomes active) */
+    footer > div {
+        grid-template-columns: 3fr 4fr;
+        width: initial;
+    }
+    .socials {
+        margin-top: 5px;
+    }
+    .hedd {
+        bottom: 100px;
+    }
+
+    .hedd > h1 {
+        font-size: 350%;
+
+    }
+    .bil {
+        height: 0px
+    }
+}
+    
+@media screen and (min-width: 48em) {
+
+}       
+@media screen and (min-width: 60em) {
+
+}          
+@media (min-width: 80em) {
+
+}
