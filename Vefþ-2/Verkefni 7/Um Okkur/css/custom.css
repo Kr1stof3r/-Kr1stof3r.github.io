@@ -10,6 +10,14 @@ span.icon::before {
     margin: 3px;
 }
 
+.heddrib {
+    background-color: rgb(244, 139, 4);
+    text-align: center;
+}
+
+.sixfor {
+    grid-template-columns: 3fr 2fr;
+}
 footer {
     background-color: rgb(5,0,56);
     max-width: 100%;
