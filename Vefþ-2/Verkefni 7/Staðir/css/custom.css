@@ -86,7 +86,17 @@ dl {
     margin: 0;
 } 
 
-
+.meginmal {
+    width: 70%;
+}
+.white {
+    color: white;
+}
+.colm2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1em;
+}
 
 
 @media screen and (min-width: 30em) {
@@ -119,6 +129,12 @@ dl {
 @media screen and (min-width: 60em) {
     .bil {
         height: 0px;
+    }    
+    
+    .colm2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap:1em;
     }
 }          
 @media (min-width: 80em) {
