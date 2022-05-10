@@ -31,7 +31,8 @@ footer {
 
 footer > div {
     display: grid;
-    grid-template-columns: 3fr 4fr;
+    grid-template-columns: 1fr;
+    width: fit-content; 
 
 }
 .socials {
@@ -39,7 +40,7 @@ footer > div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: fit-content;
-    margin-top: 5px;
+    margin-top: 20px;
 
     
 
