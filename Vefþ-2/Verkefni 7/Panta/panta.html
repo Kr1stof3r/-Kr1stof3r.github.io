@@ -58,7 +58,90 @@
     </div>
   </header>
   <main class="container">
+    <section class="container biltop">
+      <table >
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>When - Spots available</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td data-label="Name">South and Glacier's</td>
+          <td data-label="When - Spots available">25-28 May<br>
+                                                  7 Left,<br>
+                                                  13-16 May<br>
+                                                  14 Left
+          </td>
 
+                                 
+          <td data-label=""><img src="./images/IMG_3667.jpg"></td>
+        </tr>
+        <tr>
+          <td data-label="Name">Westfjords - Hot Springs </td>
+          <td data-label="When - Spots available">1-5 june<br>
+                                                  3 Left,<br>
+                                                  18-23 june<br>
+                                                  12 Left
+          </td>
+                                 
+          <td data-label=""><img src="./images/IMG_3667.jpg"></td>
+        </tr>
+      </tbody>
+      </table>
+    </section>
+    <div>
+      <form class="" action="" method="get" class="form-example">
+        <div class="col-2">
+        <div>
+        <div class="fname">
+          <label for="firstname">First name*: </label>
+          <input type="text" name="first name" id="firstname" placeholder="Jhon" required>
+        </div>
+        <div class="lname">
+          <label for="lastname">Last name*: </label>
+          <input type="text" name="last name" id="lastname" placeholder="Doe" required>
+        </div>
+        <div class="email">
+          <label for="tölvupóstur">Tölvupóstur*: </label>
+          <input type="text" name="tolvupstur" id="tolvupostur" placeholder="@email.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        </div>
+        <div class="Símanúmer">
+          <label for="tölvupóstur">Sími*: </label>
+          <input type="tel" name="simi" id="simi" placeholder="5812345" pattern="[0-9]{7}" required>
+        </div>
+      </div>
+      <div>
+        <div required>
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" >
+        <label for="vehicle1"> I have a bike</label><br>
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" >
+        <label for="vehicle2"> I have a car</label><br>
+        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" >
+        <label for="vehicle3"> I have a boat</label>
+      </div>
+      <div>
+        <input type="radio" id="pylsa" name="matur" value="Pizza" required>
+        <label for="pizza">Pizza</label><br>
+        <input type="radio" id="pylsa" name="matur" value="Sushi" required>
+        <label for="sushi">Sushi</label><br>
+        <input type="radio" id="pylsa" name="matur" value="Pylsa" required>
+        <label for="pylsa">Pylsa</label>
+      </div>
+      <div>
+        <label for="birthday">Fæðingardagur:</label>
+        <input type="date" id="fæðingardagur" name="Fæðingardagur" max="2010-12-31" required>
+      </div>
+    </div>
+    </div>
+        <div class="submit col-2">
+          <input type="submit" value="Send!">
+          <input type="reset">
+        </div>
+      </form>
+    </div>
   </main>
   <footer>
     <div class="container">
