@@ -23,60 +23,61 @@ span.icon::before {
 }
 
 footer {
-    background-color: rgb(5,0,56);
-    max-width: 100%;
-    padding: 7px;
+  background-color: rgb(5,0,56);
+  max-width: 100%;
+  padding: 7px;
 
 }
 
 footer > div {
-    display: grid;
-    grid-template-columns: 3fr 4fr;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: fit-content; 
 
 }
 .socials {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    width: fit-content;
-    margin-top: 5px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: fit-content;
+  margin-top: 20px;
 
-    
+  
 
 
 }
 .socials > li {
-    display: block;
-    width: fit-content;
-    margin: 0 15px;
-    
+  display: block;
+  width: fit-content;
+  margin: 0 15px;
+  
 
 }
 .socials > li > a > span.icon::before {
 
-    font-size: 2em;
-    margin: 3px 3px;
-    text-align: right;
-    color: white;
-    border: 1.5px solid white;
-    border-radius: 4px;
+  font-size: 2em;
+  margin: 3px 3px;
+  text-align: right;
+  color: white;
+  border: 1.5px solid white;
+  border-radius: 4px;
 
 }
 .socials > li > a {
-    color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
 
 }
 
 footer > div {
-    margin: 0 auto 0 auto;
-    
+  margin: 0 auto 0 auto;
+  
 }
 footer > div > dl {
-    color: white;
+  color: white;
 
 }
 footer > p {
-    color: white;
+  color: white;
 }
 
 .left {

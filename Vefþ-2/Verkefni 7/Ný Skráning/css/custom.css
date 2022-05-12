@@ -17,9 +17,17 @@ footer {
 
 }
 
+footer {
+    background-color: rgb(5,0,56);
+    max-width: 100%;
+    padding: 7px;
+
+}
+
 footer > div {
     display: grid;
-    grid-template-columns: 3fr 4fr;
+    grid-template-columns: 1fr;
+    width: fit-content; 
 
 }
 .socials {
@@ -27,7 +35,7 @@ footer > div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: fit-content;
-    margin-top: 5px;
+    margin-top: 20px;
 
     
 
@@ -74,3 +82,30 @@ dl {
     margin: 0;
 } 
 
+@media screen and (min-width: 30em) {
+    /* Larger than mobile */
+
+}
+
+@media screen and (min-width: 37.5em) {
+    /* Larger than phablet (also point when grid becomes active) */
+    footer > div {
+        grid-template-columns: 3fr 4fr;
+        width: initial;
+    }
+    .socials {
+        margin-top: 5px;
+    }
+
+}
+    
+@media screen and (min-width: 48em) {
+    
+
+}       
+@media screen and (min-width: 60em) {
+
+}          
+@media (min-width: 80em) {
+
+}
