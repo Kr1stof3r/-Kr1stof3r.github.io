@@ -9,12 +9,49 @@ label {
 span.icon::before {
     margin: 3px;
 }
+.topmarg {
+    margin: 100px auto;
+}
+.welcome {
+    text-align: center;
+    font-weight: 800;
+}
 
-footer {
-    background-color: rgb(5,0,56);
-    max-width: 100%;
-    padding: 7px;
+form {
+    margin: 0 auto;
+    
+    padding: 7px ;
+    border: 1px solid #a9a9a9;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    font-size: 0.9em;
+    max-width: 400px;
+    
+}
 
+div.col4060 {
+    grid-template-columns: 60% 40%;
+}
+
+form > div > div > div {
+    padding: 10px;
+    
+}
+label {
+    display: inline;
+}
+
+input[type="text"] {
+    padding: 1px;
+    padding-left: 3px;
+    margin-left: 5px;
+}
+input[placeholder] {
+    color: gray;
+}
+
+.submit {
+    margin: 0 auto
 }
 
 footer {
@@ -74,7 +111,6 @@ footer > div > dl {
 footer > p {
     color: white;
 }
-
 .left {
     text-align: left;
 }
@@ -104,7 +140,9 @@ dl {
 
 }       
 @media screen and (min-width: 60em) {
-
+    form > div > fieldset > div {
+        padding: 15px;
+    }
 }          
 @media (min-width: 80em) {
 

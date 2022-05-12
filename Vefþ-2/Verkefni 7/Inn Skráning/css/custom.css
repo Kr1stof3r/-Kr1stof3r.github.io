@@ -5,11 +5,77 @@ label {
     display: inline;
 }
 
+.bil {
+    height: 10px;
+}
+
+
 
 span.icon::before {
     margin: 3px;
 }
 
+
+.heddrib {
+    background-color: rgb(244, 139, 4);
+    text-align: center;
+}
+
+.topmarg {
+    margin: 40px auto;
+    margin-bottom: 100px
+}
+.welcome {
+    text-align: center;
+    font-weight: 800;
+}
+
+form {
+    margin: 0 auto;
+    
+    padding: 7px ;
+    border: none;
+    background-color: #f8f8f8;
+
+    font-size: 0.9em;
+    max-width: 400px;
+    
+}
+
+div.col4060 {
+    grid-template-columns: 60% 40%;
+}
+
+form > div > div > div {
+    padding: 20px;
+    
+}
+label {
+    display: inline;
+}
+
+input[type="text"] {
+    padding: 1px;
+    padding-left: 3px;
+    margin-left: 5px;
+}
+input[placeholder] {
+    color: gray;
+}
+
+input[type="submit"] {
+    width: 100%;
+}
+
+.submit {
+    margin: 0 auto;
+    width: 80%
+}
+
+.newacc {
+    width: 90%;
+    margin: 10px auto;
+}
 footer {
     background-color: rgb(5,0,56);
     max-width: 100%;
@@ -96,7 +162,12 @@ dl {
 
 }       
 @media screen and (min-width: 60em) {
-
+    form > div > fieldset > div {
+        padding: 15px;
+    }
+    .bil {
+        height: 0px;
+    }
 }          
 @media (min-width: 80em) {
 
