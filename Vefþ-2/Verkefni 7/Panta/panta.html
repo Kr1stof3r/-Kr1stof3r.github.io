@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html lang="is">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CSS grind">
-    <meta name="author" content="GJG">
-    <title>CSS grind</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/grid.css">
-    <!-- stílsíður sem við eigum eftir að bæta við-->
-    <!--link rel="stylesheet" href="css/iconfont.css"-->
-    <link rel="stylesheet" href="../topmenu.css">
-    <link rel="stylesheet" href="css/custom.css">
-    <!--Allar stílsíðurnar eru síðan þjappaðar í eina stílsíðu -->
-    <!--link rel="stylesheet" href="css/styles.css"-->
-    <link rel="stylesheet" href="css/style.css">
 
-    <link rel="icon" type="image/svg" href="images/rwd-icon.svg">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CSS grind">
+  <meta name="author" content="GJG">
+  <title>CSS grind</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/grid.css">
+  <!-- stílsíður sem við eigum eftir að bæta við-->
+  <!--link rel="stylesheet" href="css/iconfont.css"-->
+  <link rel="stylesheet" href="../topmenu.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <!--Allar stílsíðurnar eru síðan þjappaðar í eina stílsíðu -->
+  <!--link rel="stylesheet" href="css/styles.css"-->
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="icon" type="image/svg" href="images/rwd-icon.svg">
 </head>
+
 <body id="top">
   <section class="ribbon">
     <div class="col-2 container" id="tnav">
-      <div class="logodiv" >
+      <div class="logodiv">
         <a href="../Index/index.html">
-        <img src="images/aa_logo.svg" class="navlogo">
-      </a>
+          <img src="images/aa_logo.svg" class="navlogo">
+        </a>
       </div>
       <nav class="topnav">
         <input class="menubutt" id="main-nav" type="checkbox">
         <label for="main-nav"><span aria-hidden="true" data-icon="&#xe901;" class="hamb"></span></label>
         <ul class="col-5 ulmenu bounce-top bounce-top-del">
-          <a class="btn btn--stripe" href="../Um Okkur/umokkur.html"><li><span aria-hidden="true" data-icon="&#xea0c;" class="icon"></span>About Us</li></a>
-          
-          <a href="../Staðir/stadir.html"><li><span aria-hidden="true" data-icon="&#xe947;" class="icon"></span>Places</li></a>
-          
-          <a href="../Ferðir/ferdir.html"><li><span aria-hidden="true" data-icon="&#xe9b1;" class="icon"></span>Tour's</li></a>
-          
-          <a href="../Panta/panta.html"><li><span aria-hidden="true" data-icon="&#xe93a;" class="icon"></span>Booking</li></a>
-          
-          <a href="../Inn Skráning/innskra.html"><li><span aria-hidden="true" data-icon="&#xe971;" class="icon"></span>Log In</li></a>
-          
+          <a class="btn btn--stripe" href="../Um Okkur/umokkur.html">
+            <li><span aria-hidden="true" data-icon="&#xea0c;" class="icon"></span>About Us</li>
+          </a>
+
+          <a href="../Staðir/stadir.html">
+            <li><span aria-hidden="true" data-icon="&#xe947;" class="icon"></span>Places</li>
+          </a>
+
+          <a href="../Ferðir/ferdir.html">
+            <li><span aria-hidden="true" data-icon="&#xe9b1;" class="icon"></span>Tour's</li>
+          </a>
+
+          <a href="../Panta/panta.html">
+            <li><span aria-hidden="true" data-icon="&#xe93a;" class="icon"></span>Booking</li>
+          </a>
+
+          <a href="../Inn Skráning/innskra.html">
+            <li><span aria-hidden="true" data-icon="&#xe971;" class="icon"></span>Log In</li>
+          </a>
+
 
         </ul>
       </nav>
@@ -52,92 +66,108 @@
 
   </section>
 
-  <header class=""  id="top">
+  <header class="" id="top">
     <div class="heddrib">
       <h1>Bookoing</h1>
     </div>
   </header>
   <main class="container">
     <section class="container biltop">
-      <table >
+      <table>
         <thead>
-        <tr>
-          <th>Name</th>
-          <th>When - Spots available</th>
-          <th></th>
-        </tr>
+          <tr>
+            <th>Name</th>
+            <th>When - Spots available</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-        <tr>
-          <td data-label="Name">South and Glacier's</td>
-          <td data-label="When - Spots available">25-28 May<br>
-                                                  7 Left,<br>
-                                                  13-16 May<br>
-                                                  14 Left
-          </td>
+          <tr>
+            <td data-label="Name">South and Glacier's</td>
+            <td data-label="When - Spots available">25-28 May<br>
+              7 Left,<br>
+              13-16 May<br>
+              14 Left
+            </td>
 
-                                 
-          <td data-label=""><img src="./images/IMG_3667.jpg"></td>
-        </tr>
-        <tr>
-          <td data-label="Name">Westfjords - Hot Springs </td>
-          <td data-label="When - Spots available">1-5 june<br>
-                                                  3 Left,<br>
-                                                  18-23 june<br>
-                                                  12 Left
-          </td>
-                                 
-          <td data-label=""><img src="./images/IMG_3667.jpg"></td>
-        </tr>
-      </tbody>
+
+            <td data-label=""><img src="./images/IMG_3667.jpg"></td>
+          </tr>
+          <tr>
+            <td data-label="Name">Westfjords - Hot Springs </td>
+            <td data-label="When - Spots available">1-5 june<br>
+              3 Left,<br>
+              18-23 june<br>
+              12 Left
+            </td>
+
+            <td data-label=""><img src="./images/IMG_3667.jpg"></td>
+          </tr>
+        </tbody>
       </table>
     </section>
     <div>
       <form class="" action="" method="get" class="form-example">
         <div class="col-2">
-        <div>
-        <div class="fname">
-          <label for="firstname">First name*: </label>
-          <input type="text" name="first name" id="firstname" placeholder="Jhon" required>
+          <div class="formvin">
+            <div class="fname">
+              <label for="firstname">First name*: </label>
+              <input type="text" name="first name" id="firstname" placeholder="Jhon" required>
+            </div>
+            <div class="lname">
+              <label for="lastname">Last name*: </label>
+              <input type="text" name="last name" id="lastname" placeholder="Doe" required>
+            </div>
+            <div class="email">
+              <label for="tölvupóstur">Tölvupóstur*: </label>
+              <input type="text" name="tolvupstur" id="tolvupostur" placeholder="@email.com"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+            </div>
+            <div class="Símanúmer">
+              <label for="tölvupóstur">Sími*: </label>
+              <input type="tel" name="simi" id="simi" placeholder="5812345" pattern="[0-9]{7}" required>
+            </div>
+          </div>
+
+          <div class="formvin">
+            <div required>
+              <label> Select Tour </label>
+              <select>
+                <option value="Sag 25-28 May"> South and Glacier's 13-16. May
+                </option>
+                <option value="Sag 25-28 May"> South and Glacier's 25-28. May
+                </option>
+                <option value="Aui"> Westfjords - Hot Springs 1-5. June
+                </option>
+                <option value="Skoda"> Westfjords - Hot Springs 18-23. June
+                </option>
+              </select>
+            </div>
+            <div>
+              <label> Card Type</label>
+              <select>
+                <option value="Visa"> Visa
+                </option>
+                <option value="Mastercard"> Mastercard
+                </option>
+                <option value="Americanexpress"> American Express
+                </option>
+              </select>
+            </div>
+            
+              <div class="Card number">
+                <label for="Card number">Card number*: </label>
+                <input type="text" placeholder="1234 1234 1234 1234" pattern="[0-9]+ [0-9]+ [0-9]+ {0-9}" required>
+              </div>
+              <div class="Security number">
+                <label for="Security number">Security number*: </label>
+                <input type="text" placeholder="123" pattern="[0-9]" required>
+              </div>
+            
+          </div>
         </div>
-        <div class="lname">
-          <label for="lastname">Last name*: </label>
-          <input type="text" name="last name" id="lastname" placeholder="Doe" required>
-        </div>
-        <div class="email">
-          <label for="tölvupóstur">Tölvupóstur*: </label>
-          <input type="text" name="tolvupstur" id="tolvupostur" placeholder="@email.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-        </div>
-        <div class="Símanúmer">
-          <label for="tölvupóstur">Sími*: </label>
-          <input type="tel" name="simi" id="simi" placeholder="5812345" pattern="[0-9]{7}" required>
-        </div>
-      </div>
-      <div>
-        <div required>
-        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" >
-        <label for="vehicle1"> I have a bike</label><br>
-        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" >
-        <label for="vehicle2"> I have a car</label><br>
-        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" >
-        <label for="vehicle3"> I have a boat</label>
-      </div>
-      <div>
-        <input type="radio" id="pylsa" name="matur" value="Pizza" required>
-        <label for="pizza">Pizza</label><br>
-        <input type="radio" id="pylsa" name="matur" value="Sushi" required>
-        <label for="sushi">Sushi</label><br>
-        <input type="radio" id="pylsa" name="matur" value="Pylsa" required>
-        <label for="pylsa">Pylsa</label>
-      </div>
-      <div>
-        <label for="birthday">Fæðingardagur:</label>
-        <input type="date" id="fæðingardagur" name="Fæðingardagur" max="2010-12-31" required>
-      </div>
-    </div>
-    </div>
         <div class="submit col-2">
-          <input type="submit" value="Send!">
+          <input type="submit" value="Finish">
           <input type="reset">
         </div>
       </form>
@@ -152,19 +182,24 @@
         <dd>Kristoferan21@tskoli.is.</dd>
         <dt>Vefhönnun</dt>
         <dd>VEFÞ2VH05BU-Hát Vefhönnun 2</dd>
-      </dl> 
-    <div>
-      <ul class="socials">
-        <li><a href="https://www.facebook.com/kristofer.antonsson.7"><span aria-hidden="true" data-icon="&#xea90;" class="icon"></span></a></li>
-        <li><a href="https://www.instagram.com/kristoferh05/"><span aria-hidden="true" data-icon="&#xea92;" class="icon"></span></a></li>
-        <li><a href="https://www.linkedin.com/in/krist%C3%B3fer-helgi-antonsson-0a5aab236/"><span aria-hidden="true" data-icon="&#xeac9;" class="icon"></span></a></li>
-        <li><a href="https://www.snapchat.com/add/krissi.ant?share_id=6wGEKIo_3Ck&locale=en-US"><span aria-hidden="true" data-icon="&#xe900;" class="icon"></span></a></li>
-      </ul>
-    </div>
+      </dl>
+      <div>
+        <ul class="socials">
+          <li><a href="https://www.facebook.com/kristofer.antonsson.7"><span aria-hidden="true" data-icon="&#xea90;"
+                class="icon"></span></a></li>
+          <li><a href="https://www.instagram.com/kristoferh05/"><span aria-hidden="true" data-icon="&#xea92;"
+                class="icon"></span></a></li>
+          <li><a href="https://www.linkedin.com/in/krist%C3%B3fer-helgi-antonsson-0a5aab236/"><span aria-hidden="true"
+                data-icon="&#xeac9;" class="icon"></span></a></li>
+          <li><a href="https://www.snapchat.com/add/krissi.ant?share_id=6wGEKIo_3Ck&locale=en-US"><span
+                aria-hidden="true" data-icon="&#xe900;" class="icon"></span></a></li>
+        </ul>
+      </div>
 
 
     </div>
-  <p class="centre">2022 KHA</p>
+    <p class="centre">2022 KHA</p>
   </footer>
 </body>
+
 </html>

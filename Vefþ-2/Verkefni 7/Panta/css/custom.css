@@ -194,6 +194,8 @@ table {
     background-color: #f8f8f8;
     border-radius: 15px;
     font-size: 0.9em;
+    background-image: url(../images/IMG_2273.JPG);
+    background-size: 100% 100%;
     
 }
 
@@ -204,22 +206,38 @@ form > div > div > div {
     padding: 10px;
     
 }
+form > div > div > div > label {
+    color: cornflowerblue
+    
+}
 label {
     display: inline;
 }
 
-input[type="text"] {
+input[type="text"], input[type="tel"], select {
     padding: 1px;
     padding-left: 3px;
     margin-left: 5px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.586);
+}
+
+input[type="submit"], input[type="reset"] {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.586);
+    color: black;
+    font-weight: 800;
+
 }
 input[placeholder] {
-    color: gray;
+    font-weight: 700;
 }
 
 .submit {
     margin: 0 auto
 }
+
+
 
 @media screen and (min-width: 30em) {
     /* Larger than mobile */
@@ -242,7 +260,9 @@ input[placeholder] {
         font-size: 350%;
 
     }
-
+    .formvin {
+        padding: 10% 0;
+    }
 }
     
 @media screen and (min-width: 48em) {
@@ -302,7 +322,7 @@ input[placeholder] {
     tr:nth-child(2n+1):not(thead>tr) {
         background-color: rgb(97,155,102);
       }
-
+    
 
 }       
 @media screen and (min-width: 60em) {
@@ -311,7 +331,9 @@ input[placeholder] {
     }
     form > div > fieldset > div {
       padding: 15px;
-  }
+  } 
+
+
 }          
 @media (min-width: 80em) {
 
