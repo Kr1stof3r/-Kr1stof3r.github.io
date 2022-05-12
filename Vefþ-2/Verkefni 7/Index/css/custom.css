@@ -1,6 +1,8 @@
 .bil {
     height: 25px;
+
 }
+
 
 .fela {display:none}
 
@@ -157,7 +159,8 @@ dl {
 
     }
     .bil {
-        height: 0px
+        height: 22px;
+        padding: 0;
     }
 }
     

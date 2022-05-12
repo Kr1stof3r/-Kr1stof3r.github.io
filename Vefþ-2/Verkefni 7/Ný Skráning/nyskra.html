@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/custom.css">
     <!--Allar stílsíðurnar eru síðan þjappaðar í eina stílsíðu -->
     <!--link rel="stylesheet" href="css/styles.css"-->
+
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="icon" type="image/svg" href="images/rwd-icon.svg">
@@ -52,37 +53,51 @@
 
   </section>
 
-  <header class="container" id="top">
-
+  <header class=""  id="top">
+    <div class="heddrib">
+      <h1>Sign up</h1>
+    </div>
   </header>
   <main>  
     <div class="container topmarg">
-      <h2 class="welcome">Good to see you again</h2>
-      <form class="" action="" method="get" class="form-example">
+      <h2 class="welcome">Create an account</h2>
+      <form class="" action="../Index/" method="get" class="form-example">
         <div>
         <div>
+        <div class="Full Name">
+          <label for="name">Full Name*: </label>
+          <input type="text" name="name" id="name" placeholder="Jesus christ" required>
+        </div>
         <div class="uname">
           <label for="username">Username*: </label>
-          <input type="text" name="first name" id="firstname" placeholder="Jhon" required>
+          <input type="text" name="uname" id="uname" placeholder="Username" required>
         </div>
-        <div class="lname">
-          <label for="lastname">Last name*: </label>
-          <input type="text" name="last name" id="lastname" placeholder="Doe" required>
+        <div>
+          <label for="birthday">Birthday*: </label>
+          <input type="date" id="fæðingardagur" name="Fæðingardagur" max="2010-12-31" required>
         </div>
-        <div class="email">
-          <label for="tölvupóstur">Tölvupóstur*: </label>
-          <input type="text" name="tolvupstur" id="tolvupostur" placeholder="@email.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        <div class="pword">
+          <label for="password">Password*: </label>
+          <input type="password" placeholder="Password" required>
         </div>
-        <div class="Símanúmer">
-          <label for="tölvupóstur">Sími*: </label>
-          <input type="tel" name="simi" id="simi" placeholder="5812345" pattern="[0-9]{7}" required>
+        <div class="pword">
+          <label for="password">Repeat Password*: </label>
+          <input type="password" placeholder="Password" required>
+        </div>
+        <div>
+          <input type="checkbox"  name="keepin" value="keepin true">
+          <label for="Keep me signed in"> Keep me signed in</label>
         </div>
       </div>
     </div>
-        <div class="submit col-2">
-          <input type="submit" value="Send!">
-          <input type="reset">
-        </div>
+        <div class="submit">
+          
+          <input type="submit" value="Sign up">
+          
+        </div> 
+        <div class="newacc" >
+        <a href="../Inn Skráning/innskra.html">Already have an account?</a>
+      </div>
       </form>
     </div>
 
