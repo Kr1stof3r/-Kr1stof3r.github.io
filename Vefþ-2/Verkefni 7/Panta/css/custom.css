@@ -201,6 +201,9 @@ table {
     font-size: 0.9em;
     background-image: url('../images/IMG_2273.jpg');
     background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    
     
     
 }
