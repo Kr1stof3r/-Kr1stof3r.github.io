@@ -183,6 +183,10 @@ table {
       padding-right: 9.6px;
   }
 
+  tr:nth-child(2n+1):not(thead>tr) {
+    background-color: rgb(97,155,102);
+  }
+
   .attfim {
       width: 85%;
       margin: 0 auto;
@@ -321,9 +325,7 @@ input[placeholder] {
       table td::before {
         display: none;
     }
-    tr:nth-child(2n+1):not(thead>tr) {
-        background-color: rgb(97,155,102);
-      }
+
     
 
 }       
