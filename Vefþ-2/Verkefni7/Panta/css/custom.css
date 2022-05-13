@@ -192,7 +192,13 @@ table {
       margin: 0 auto;
   }
 
-
+  .formclass {
+    background-image: url(/Vefþ-2/Verkefni7/Panta/images/IMG_2273.jpg);
+    
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+  }
 
   form {
     margin-top: 30px;
@@ -201,11 +207,7 @@ table {
     background-color: rgba(255, 255, 255, 0.0);
     border-radius: 15px;
     font-size: 0.9em;
-    background-image: url(/Vefþ-2/Verkefni7/Panta/images/IMG_2273.jpg);
-    
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
+
     
     
     
