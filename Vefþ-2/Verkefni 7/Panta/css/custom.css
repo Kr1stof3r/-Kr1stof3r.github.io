@@ -191,23 +191,21 @@ table {
       width: 85%;
       margin: 0 auto;
   }
-  .formdiv {
-    background-image: url('../images/IMG_2273.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    
-
-  }
 
   form {
     margin-top: 30px;
     padding: 7px ;
     border: 1px solid #a9a9a9;
-    background-color: #f8f8f8;
+    background-color: transparent;
     border-radius: 15px;
     font-size: 0.9em;
- 
+    background-image: url('../images/IMG_2273.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    
+    
+    
 }
 
 div.col4060 {
