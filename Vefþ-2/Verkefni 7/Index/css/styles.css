@@ -183,7 +183,7 @@ nav{width:fit-content;padding:0}
 .ulmenu>a>li{color:var(--fontcol);line-height:45px;margin:0}
 .anihringur{display:block;border:1px solid #000;border-radius:50%;position:relative;height:45px;top:45px;left:0;right:0}
 .bil{padding:22px}
-.navlogo{display:block;height:35px;width:auto;margin:3px 0}
+.navlogo{display:block;height:35px;width:auto;margin:3px 0; margin-right: 20px;}
 .navlogo:hover{transform:scale(1.1)}
 .logodiv{display:flex;justify-content:flex-end}
 .ulmenu>a:hover{background-color:#050038;--fontcol:white;border-radius:45%;padding:2px}
@@ -196,6 +196,6 @@ nav{width:fit-content;padding:0}
 #tnav>nav>ul{grid-template-columns:repeat(5,auto);display:grid;grid-gap:4em;position:initial;left:initial;top:initial;margin:0 auto;height:100%;width:auto;align-items:center}
 #tnav>nav>ul>li{margin-bottom:0;display:block;margin:0 auto;padding:0 auto}
 nav>ul>li>a{display:block;margin:auto}
-.navlogo{height:60px}
+.navlogo{height:60px; margin-right: initial;}
 .logodiv{justify-content:flex-start}
 }
