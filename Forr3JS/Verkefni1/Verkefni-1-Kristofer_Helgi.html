@@ -635,11 +635,6 @@
             });
 
             window.addEventListener('touchmove', (e) => {
-            //console.log(e.changedTouches[0].pageY, e.changedTouches[0].pageX);
-
-            });
-
-            window.addEventListener('touchend', (e) => {
                 let x = e.changedTouches[0].pageX-window.innerWidth/2
                 let y = e.changedTouches[0].pageY-window.innerHeight/2
                 const c = hradi;
@@ -648,6 +643,18 @@
                 const b = c * Math.sin(radians);
                 leikb.xv = -a;
                 leikb.yv = -b;
+
+            });
+
+            window.addEventListener('touchend', (e) => {
+                // let x = e.changedTouches[0].pageX-window.innerWidth/2
+                // let y = e.changedTouches[0].pageY-window.innerHeight/2
+                // const c = hradi;
+                // const radians = Math.atan2(y, x);
+                // const a = c * Math.cos(radians);
+                // const b = c * Math.sin(radians);
+                // leikb.xv = -a;
+                // leikb.yv = -b;
 
 
             });
