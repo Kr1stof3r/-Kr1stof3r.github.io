@@ -53,6 +53,7 @@
         let augax = 0
         let augay = -11
         let touchstart, touchmove;
+        let lasttouch = 0;
 
 
         function randomatt() {
@@ -555,6 +556,7 @@
                                 leikb.ghosts[i].dead = false;
                             }, 3000);
                         } else {
+                            window.navigator.vibrate(200);
                             pacman.hp -= 1;
                             leikb = new leikbord(-1920, -720 - 600, 0, 0, 720 * 3, 5590)
 
@@ -635,6 +637,8 @@
             });
 
             window.addEventListener('touchmove', (e) => {
+                if (timeStamp > lasttouch + 40) {
+                lasttouch = timeStamp;
                 let x = e.changedTouches[0].pageX-window.innerWidth/2
                 let y = e.changedTouches[0].pageY-window.innerHeight/2
                 const c = hradi;
@@ -643,7 +647,7 @@
                 const b = c * Math.sin(radians);
                 leikb.xv = -a;
                 leikb.yv = -b;
-
+                }
             });
 
             window.addEventListener('touchend', (e) => {
