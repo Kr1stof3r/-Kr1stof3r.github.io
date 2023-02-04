@@ -36,10 +36,10 @@
 
         let canvas = document.getElementById("canvas");
         let html = document.getElementById("html");
-        // canvas.width = 1920
-        // canvas.height = 720
-        canvas.width = 6000
-        canvas.height = 2500
+        canvas.width = 1920
+        canvas.height = 720
+        // canvas.width = 6000
+        // canvas.height = 2500
         let ctx = canvas.getContext("2d");
         let hradi = 15
         let secondsPassed;
@@ -93,18 +93,24 @@
                     document.exitFullscreen();
                 } else {
                     canvas.requestFullscreen();
+                    window.screen.orientation.lock('landscape');
+
                 }
             } else if (canvas.mozRequestFullScreen) {
                 if (document.mozFullScreenElement) {
                     document.mozCancelFullScreen();
                 } else {
                     canvas.mozRequestFullScreen();
+                    window.screen.orientation.lock('landscape');
+
                 }
             } else if (canvas.webkitRequestFullscreen) {
                 if (document.webkitFullscreenElement) {
                     document.webkitExitFullscreen();
                 } else {
                     canvas.webkitRequestFullscreen();
+                    window.screen.orientation.lock('landscape');
+
                 }
             }
         }
