@@ -454,25 +454,34 @@
             highscore: localStorage.getItem('highscore') || 0,
             draw: function () {
 
+                let xv = leikb.xv;
+                let yv = leikb.yv;
 
-                if (leikb.xv === 15) {
+                if (Math.abs(xv) > Math.abs(yv)) {
+                    yv = 0;
+                } 
+                else {
+                    xv = 0;
+                }
+
+                if (xv > 0) {
                     startAngle = 1.1 * Math.PI;
                     endAngle = 0.75 * Math.PI;
                     augax = 0;
                     augay = -11
-                } else if (leikb.xv === -15) {
+                } else if (xv < 0) {
                     startAngle = 0.15 * Math.PI;
                     endAngle = 1.85 * Math.PI;
                     augax = 0
                     augay = -11
 
-                } else if (leikb.yv === 15) {
+                } else if (yv > 0) {
                     startAngle = 1.55 * Math.PI;
                     endAngle = 1.3 * Math.PI;
                     augax = -18
                     augay = -6
 
-                } else if (leikb.yv === -15) {
+                } else if (yv < 0) {
                     startAngle = 0.55 * Math.PI;
                     endAngle = (0.55 + 1.75) * Math.PI;
                     augax = 15
