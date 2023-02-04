@@ -771,7 +771,6 @@
                 leikb.powpell.powwp[i].draw();
 
             }
-                console.log(leikb.pells.pells.length)
             for (let i = 0; i < leikb.pells.pells.length; i++) {
                 leikb.pells.pells[i].x += leikb.xv;
                 leikb.pells.pells[i].y += leikb.yv;
@@ -813,6 +812,7 @@
             
             window.addEventListener('touchstart', (e) => {
                 touchtime = e.timeStamp;
+                touchstart = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
 
             });
 
@@ -834,10 +834,22 @@
                 if (timeStamp > touchendtime + 1500) {
                 touchendtime = timeStamp;
                 if (120 < (e.timeStamp - touchtime) && 500 > (e.timeStamp - touchtime)) {
+                    let x = e.changedTouches[0].pageX - touchstart[0]
+                    let y = e.changedTouches[0].pageY - touchstart[1]
                     let xv = leikb.xv;
                     let yv = leikb.yv;
-                    leikb.xv *= 1.45;
-                    leikb.yv *= 1.45;
+                    console.log(Math.sqrt(x*x + y*y))
+                    if (Math.sqrt(x*x + y*y) < 100) {
+                        leikb.xv *= 1.15;
+                        leikb.yv *= 1.15;
+                    } else if (Math.sqrt(x*x + y*y) < 300) {
+                        leikb.xv *= 1.3;
+                        leikb.yv *= 1.3;
+                    } else {
+                        leikb.xv *= 1.5;
+                        leikb.yv *= 1.5; 
+                    }
+
                     setTimeout(() => {
                         leikb.xv = xv;
                         leikb.yv = yv;
