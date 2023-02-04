@@ -848,7 +848,7 @@
             window.addEventListener('touchend', (e) => {
                 if (timeStamp > touchendtime + 1500) {
                 touchendtime = timeStamp;
-                if (120 < (e.timeStamp - touchtime) && 500 > (e.timeStamp - touchtime)) {
+                if (120 < (e.timeStamp - touchtime) && 700 > (e.timeStamp - touchtime)) {
                     let x = e.changedTouches[0].pageX - touchstart[0]
                     let y = e.changedTouches[0].pageY - touchstart[1]
                     let xv = leikb.xv;
