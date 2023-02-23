@@ -1,0 +1,300 @@
+<!-- 
+Kristófer Helgi Antonsson
+23.02.23
+Vefapp 25% 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+      }
+
+      h1 {
+        margin: 0;
+      }
+        body {
+            font-family: 'Open Sans Regular';
+        }
+
+        .events {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .event {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .event img {
+            max-width: 100%;
+        }
+
+        .event h2 {
+            font-family: 'Open Sans Bold';
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .event .price {
+            font-weight: bold;
+        }
+
+        .event .date, .event .loc {
+            margin-top: 5px;
+            font-size: 0.8em;
+        }
+
+        #maxpval {
+            display:inline;
+            width: auto;
+            float:right;
+            margin-bottom: 3px;
+        }
+        #minpval {
+            display:inline;
+            width: auto;
+            float:left;
+            margin-bottom: 3px;
+
+        }
+
+
+        #prislide {
+            width: min-content
+        }
+        nav {
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            width: min-content;
+            column-gap: 40px;
+        }
+        .search-container {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+            width: 200px;
+            height: fit-content;
+            margin-top: 30px;
+        }
+
+        .search-container input[type="text"] {
+            width: 100%;
+            border: none;
+            font-size: 16px;
+        }
+ 
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Discover what's going on in your area</h1>
+        
+    </header>
+<nav>
+    <div id="prislide">
+        <p id="minpval">0</p>
+        <p id="maxpval">0</p>
+        <input id="priceinp" type="range" min="0" max="0" step="0" />
+        <p>Less than: <output id="priceval"></output> kr.</p>
+    </div>
+    
+    <div id="datepickers">
+        <div id="date1div">
+            <p>From: <input type="date" id="datep1"></p>
+        </div>
+        <div id="date2div">
+            <p>To: <input type="date" id="datep2"></p>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search inbox...">
+    </div>  
+</nav>   
+    <div class="events">
+    
+    
+    </div>
+
+
+
+<script>
+
+    async function fetchData() {
+        try {
+        // let response = await fetch('vidburdir.json');
+        let response = await fetch('https://gist.githubusercontent.com/Kr1stof3r/b02e31abac7ad97d1c4767e508bc9880/raw/75a593dc4059636be38ecf2696017933c7e89c38/vidburdir.json');
+        return await response.json();
+
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
+
+
+
+
+    async function render(data) {
+        
+        let uppdated = {
+            events: data.events.filter((event) => {return event.price <= pricefilter})
+        }
+        if (daterange.length != 0) {
+
+            let dateupdated = {
+                events: uppdated.events.filter((event) => {return new Date(daterange[0]).getTime() <= new Date(event.date).getTime() && new Date(daterange[1]).getTime() >= new Date(event.date).getTime()})
+
+            }
+            uppdated.events = dateupdated.events
+        }
+
+        if (search != "") {
+
+            let dateupdated = {
+                events: uppdated.events.filter(event => {let name = event.name;  return new RegExp(search.toLowerCase(), "i").test(name.toLowerCase())})
+
+            }
+            uppdated.events = dateupdated.events
+        }
+
+
+        uppdated.events.sort((a, b) => a.price - b.price);
+        
+
+        eventdiv.innerHTML = ""
+        console.log(uppdated)
+        for (let i = 0; i < uppdated.events.length; i++) {
+            div = document.createElement('div');
+            div.classList.add('event')
+            h2 = document.createElement('h2');
+            h2.classList.add("titil")
+            pprice = document.createElement('p');
+            pprice.classList.add("price")
+            pdate = document.createElement('p');
+            pdate.classList.add("date")
+            ploc = document.createElement('p')
+            ploc.classList.add("loc")
+            img = document.createElement('img')
+            img.classList.add("img")
+            h2.textContent = uppdated.events[i].name
+            pprice.textContent = uppdated.events[i].price
+            pdate.textContent = uppdated.events[i].date
+            ploc.textContent = uppdated.events[i].location
+            img.setAttribute('src', uppdated.events[i].image)
+
+            div.appendChild(h2)
+            div.appendChild(img)
+            div.appendChild(pprice)
+            div.appendChild(pdate)
+            div.appendChild(ploc)
+
+            eventfrag.appendChild(div)
+        }
+            eventdiv.appendChild(eventfrag)
+
+     
+    }
+
+ 
+    function datefilter() {
+        if (date1 != undefined  && date2 != undefined) {
+            daterange = [date1, date2]        
+            render(eventData)
+
+        }
+        else {
+            daterange = []
+        
+        }
+    }
+
+    
+    let eventdiv = document.querySelector(".events");
+    let eventData;
+    let eventfrag = document.createDocumentFragment();
+    let pricefilter;
+    let date1;
+    let date2;
+    let daterange = [];
+    let search = "";
+
+    let priceval = document.querySelector("#priceval");
+    let priceinp = document.querySelector("#priceinp");
+    let minpval = document.querySelector("#minpval");
+    let maxpval = document.querySelector("#maxpval");
+    
+    let datep1 = document.querySelector("#datep1")
+    let datep2 = document.querySelector("#datep2")
+
+    let searchbox = document.querySelector(".search-input")
+
+fetchData().then((data) => {
+
+
+    eventData = data;
+    
+
+    priceinp.setAttribute("max", Math.max.apply(null,
+        eventData.events.map(function(o) { return o.price; })));
+    priceinp.setAttribute("min", Math.min.apply(null,
+        eventData.events.map(function(o) { return o.price; })));
+    priceinp.setAttribute("step", "500");
+    priceinp.setAttribute("value", priceinp.getAttribute("max"))
+    priceval.textContent = priceinp.getAttribute("max");
+    minpval.textContent = priceinp.getAttribute("min");
+    maxpval.textContent = priceinp.getAttribute("max");
+    pricefilter = priceinp.getAttribute("max")
+    render(eventData)
+    
+
+    priceinp.addEventListener("input", (e) => {
+        priceval.textContent = e.target.value
+        pricefilter = priceval.textContent
+        // let uppdated = {
+        //     events: eventData.events.filter((event) => {return event.price <= priceval.textContent})
+        // }
+        render(eventData);
+    });
+
+    datep1.addEventListener("input", (e) => {
+        date1 = e.target.value;
+        if (date1 == "") {
+            date1 = undefined;
+        }
+        datefilter();
+
+    })
+
+    datep2.addEventListener("input", (e) => {
+        date2 = e.target.value 
+        if (date2 == "") {
+            date2 = undefined;
+        }
+        datefilter();
+
+    })
+
+    searchbox.addEventListener("input", (e) => {
+        search = e.target.value;
+        render(eventData)
+    })
+
+    
+
+});
+</script>
+
+</body>
+</html>
