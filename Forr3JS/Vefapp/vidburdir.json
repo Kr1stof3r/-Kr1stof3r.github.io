@@ -1,0 +1,109 @@
+{
+  "events": [
+    {
+      "name": "Rock concert",
+      "price": 1500,
+      "date": "2023-03-15",
+      "location": "Reykjavik Arena",
+      "image": "https://picsum.photos/350?random=1"
+    },
+    {
+      "name": "Comedy night",
+      "price": 2500,
+      "date": "2023-03-21",
+      "location": "Harpa Concert Hall",
+      "image": "https://picsum.photos/350?random=2"
+    },
+    {
+      "name": "Art exhibition",
+      "price": 500,
+      "date": "2023-03-30",
+      "location": "National Gallery of Iceland",
+      "image": "https://picsum.photos/350?random=3"
+    },
+    {
+      "name": "Food festival",
+      "price": 1000,
+      "date": "2023-04-05",
+      "location": "Laugardalur Park",
+      "image": "https://picsum.photos/350?random=4"
+    },
+    {
+      "name": "Science seminar",
+      "price": 0,
+      "date": "2023-04-10",
+      "location": "University of Iceland",
+      "image": "https://picsum.photos/350?random=5"
+    },
+    {
+      "name": "Fashion show",
+      "price": 2000,
+      "date": "2023-04-18",
+      "location": "Hilton Reykjavik Nordica",
+      "image": "https://picsum.photos/350?random=6"
+    },
+    {
+      "name": "Classical music concert",
+      "price": 1200,
+      "date": "2023-04-23",
+      "location": "Háskólabíó Cinema",
+      "image": "https://picsum.photos/350?random=7"
+    },
+    {
+      "name": "Film festival",
+      "price": 1500,
+      "date": "2023-04-30",
+      "location": "Bíó Paradís Cinema",
+      "image": "https://picsum.photos/350?random=8"
+    },
+    {
+      "name": "Sporting event",
+      "price": 2000,
+      "date": "2023-05-07",
+      "location": "Laugardalsvöllur Stadium",
+      "image": "https://picsum.photos/350?random=9"
+    },
+    {
+      "name": "Dance performance",
+      "price": 1800,
+      "date": "2023-05-15",
+      "location": "Tjarnarbíó Theatre",
+      "image": "https://picsum.photos/350?random=10"
+    },
+    {
+      "name": "Tech conference",
+      "price": 2500,
+      "date": "2023-05-22",
+      "location": "Harpa Concert Hall",
+      "image": "https://picsum.photos/350?random=11"
+    },
+    {
+      "name": "Charity fundraiser",
+      "price": 5000,
+      "date": "2023-05-29",
+      "location": "Reykjavik City Hall",
+      "image": "https://picsum.photos/350?random=12"
+    },
+    {
+      "name": "Street festival",
+      "price": 0,
+      "date": "2023-06-05",
+      "location": "Downtown Reykjavik",
+      "image": "https://picsum.photos/350?random=13"
+    },
+    {
+      "name": "Theater play",
+      "price": 1500,
+      "date": "2023-06-12",
+      "location": "National Theatre of Iceland",
+      "image": "https://picsum.photos/350?random=14"
+    },
+    {
+      "name": "Literary festival",
+      "price": 1000,
+      "date": "2023-06-20",
+      "location": "City Library of Reykjavik",
+      "image": "https://picsum.photos/350?random=15"
+    }
+  ]
+}
