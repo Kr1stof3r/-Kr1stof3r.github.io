@@ -1,80 +1,120 @@
+// reyndi depth sensing en viðist vera eitthvað library issue krassar alltaf lína 48
+// Reyndi shadowmap a renderinn er líka til eitthvað sem heitir Lighting Estimation en það er bara web core
+// Ætlaði að prófa qr code en þarf að fara í Ar.js, Hiro image detection virkar ekki
+
 
 async function activateXR() {
 
     console.log("activateXR")
-    // Add a canvas element and initialize a WebGL context that is compatible with WebXR.
     const canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
     const gl = canvas.getContext("webgl", {xrCompatible: true});
   
     const scene = new THREE.Scene();
 
-    // The cube will have a different color on each side.
-    const materials = [
-    new THREE.MeshBasicMaterial({color: 0xff0000}),
-    new THREE.MeshBasicMaterial({color: 0x0000ff}),
-    new THREE.MeshBasicMaterial({color: 0x00ff00}),
-    new THREE.MeshBasicMaterial({color: 0xff00ff}),
-    new THREE.MeshBasicMaterial({color: 0x00ffff}),
-    new THREE.MeshBasicMaterial({color: 0xffff00})
-    ];
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 11  );
+    directionalLight.position.set(10, 15, 10);
+    // directionalLight.castShadow = true; // Enable shadow casting
 
-    // Create the cube and add it to the demo scene.
-    const cube = new THREE.Mesh(new THREE.BoxBufferGeometry(0.2, 0.2, 0.2), materials);
-    cube.position.set(1, 1, 1);
-    scene.add(cube);
+    // // Set up shadow properties
+    // directionalLight.shadow.mapSize.width = 1024; // Adjust as needed
+    // directionalLight.shadow.mapSize.height = 1024; // Adjust as needed
+    // directionalLight.shadow.camera.near = 0.1;
+    // directionalLight.shadow.camera.far = 100;
+    // directionalLight.shadow.camera.top = 50;
+    // directionalLight.shadow.camera.bottom = -50;
+    // directionalLight.shadow.camera.left = -50;
+    // directionalLight.shadow.camera.right = 50;
 
-    // Set up the WebGLRenderer, which handles rendering to the session's base layer.
+    scene.add(directionalLight);
+
     const renderer = new THREE.WebGLRenderer({
         alpha: true,
         preserveDrawingBuffer: true,
         canvas: canvas,
         context: gl
+        //antialias: true 
     });
     renderer.autoClear = false;
+    // renderer.shadowMap.enabled = true;
+    // renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
     
-    // The API directly updates the camera matrices.
-    // Disable matrix auto updates so three.js doesn't attempt
-    // to handle the matrices independently.
+
     const camera = new THREE.PerspectiveCamera();
     camera.matrixAutoUpdate = false;
 
-    // Initialize a WebXR session using "immersive-ar".
-    const session = await navigator.xr.requestSession("immersive-ar");
+    const session = await navigator.xr.requestSession("immersive-ar", {requiredFeatures: ['hit-test']});
+
+    // const session = await navigator.xr.requestSession("immersive-ar", {requiredFeatures: ['hit-test'],
+    //   requiredFeatures: ["depth-sensing"],
+    //   depthSensing: {
+    //     usagePreference: ["cpu-optimized", "gpu-optimized"],
+    //     formatPreference: ["luminance-alpha", "float32"]
+    //   } Þett krassar allt 
+
     session.updateRenderState({
     baseLayer: new XRWebGLLayer(session, gl)
     });
 
-    // A 'local' reference space has a native origin that is located
-    // near the viewer's position at the time the session was created.
     const referenceSpace = await session.requestReferenceSpace('local');
+    const viewerSpace = await session.requestReferenceSpace('viewer');
+    const hitTestSource = await session.requestHitTestSource({ space: viewerSpace });
 
 
-    // Create a render loop that allows us to draw on the AR view.
+
+    const loader = new THREE.GLTFLoader();
+    let reticle;
+    loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", function(gltf) {
+    reticle = gltf.scene;
+    reticle.visible = false;
+    scene.add(reticle);
+    })
+
+    let rove;
+    loader.load("https://raw.githubusercontent.com/Kr1stof3r/Kr1stof3r.github.io/main/Vidmotsforritun/Verkefni3/RangeRoverSports2018.glb", function(gltf) {
+    rove = gltf.scene;
+    });
+
+    session.addEventListener("select", (event) => {
+        if (rove) {
+          const clone = rove.clone();
+          const scalePercentage = 0.2;
+          clone.scale.multiplyScalar(scalePercentage);
+          clone.position.copy(reticle.position);
+          // clone.castShadow = true;
+          // clone.receiveShadow = true;
+          scene.add(clone);
+        }
+      });
+
+
+
     const onXRFrame = (time, frame) => {
-        // Queue up the next draw request.
         session.requestAnimationFrame(onXRFrame);
     
-        // Bind the graphics framebuffer to the baseLayer's framebuffer
         gl.bindFramebuffer(gl.FRAMEBUFFER, session.renderState.baseLayer.framebuffer)
     
-        // Retrieve the pose of the device.
-        // XRFrame.getViewerPose can return null while the session attempts to establish tracking.
         const pose = frame.getViewerPose(referenceSpace);
         if (pose) {
-        // In mobile AR, we only have one view.
+
         const view = pose.views[0];
     
         const viewport = session.renderState.baseLayer.getViewport(view);
         renderer.setSize(viewport.width, viewport.height)
     
-        // Use the view's transform matrix and projection matrix to configure the THREE.camera.
         camera.matrix.fromArray(view.transform.matrix)
         camera.projectionMatrix.fromArray(view.projectionMatrix);
         camera.updateMatrixWorld(true);
-    
-        // Render the scene with THREE.WebGLRenderer.
-        renderer.render(scene, camera)
+
+        const hitTestResults = frame.getHitTestResults(hitTestSource);
+        if (hitTestResults.length > 0 && reticle) {
+          const hitPose = hitTestResults[0].getPose(referenceSpace);
+          reticle.visible = true;
+          reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
+          reticle.updateMatrixWorld(true);
+        }
+
+            renderer.render(scene, camera)
         }
     }
     session.requestAnimationFrame(onXRFrame);
