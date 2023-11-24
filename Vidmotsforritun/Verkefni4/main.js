@@ -1,5 +1,160 @@
 import * as THREE from "three";
 
+function calculatePlaneAngles(p1, p2, p3) {
+    // Calculate two vectors in the plane
+    const vector1 = {
+        x: p2.x - p1.x,
+        y: p2.y - p1.y,
+        z: p2.z - p1.z
+    };
+
+    const vector2 = {
+        x: p3.x - p1.x,
+        y: p3.y - p1.y,
+        z: p3.z - p1.z
+    };
+
+    // Calculate the normal vector of the plane (cross product)
+    const normalVector = {
+        x: vector1.y * vector2.z - vector1.z * vector2.y,
+        y: vector1.z * vector2.x - vector1.x * vector2.z,
+        z: vector1.x * vector2.y - vector1.y * vector2.x
+    };
+
+    // Calculate the angle with respect to the x-axis
+    const referenceVectorX = { x: 1, y: 0, z: 0 }; // Positive x-axis
+    const dotProductX = normalVector.x * referenceVectorX.x + normalVector.y * referenceVectorX.y + normalVector.z * referenceVectorX.z;
+    const magnitudeProductX = Math.sqrt(
+        normalVector.x ** 2 + normalVector.y ** 2 + normalVector.z ** 2
+    ) * Math.sqrt(referenceVectorX.x ** 2 + referenceVectorX.y ** 2 + referenceVectorX.z ** 2);
+    const angleX = Math.acos(dotProductX / magnitudeProductX) * (180 / Math.PI);
+
+    // Calculate the angle with respect to the y-axis
+    const referenceVectorY = { x: 0, y: 1, z: 0 }; // Positive y-axis
+    const dotProductY = normalVector.x * referenceVectorY.x + normalVector.y * referenceVectorY.y + normalVector.z * referenceVectorY.z;
+    const magnitudeProductY = Math.sqrt(
+        normalVector.x ** 2 + normalVector.y ** 2 + normalVector.z ** 2
+    ) * Math.sqrt(referenceVectorY.x ** 2 + referenceVectorY.y ** 2 + referenceVectorY.z ** 2);
+    const angleY = Math.acos(dotProductY / magnitudeProductY) * (180 / Math.PI);
+
+    return { angleX, angleY };
+}
+
+function calculateYawAngle(point1, point2, point3) {
+    // Calculate the vectors v1 and v2
+    let v1 = {
+        x: point2.x - point1.x,
+        y: point2.y - point1.y,
+        z: point2.z - point1.z
+    };
+
+    let v2 = {
+        x: point3.x - point1.x,
+        y: point3.y - point1.y,
+        z: point3.z - point1.z
+    };
+
+    // Calculate the cross product of v1 and v2 to get the normal vector N
+    let N = {
+        x: v1.y * v2.z - v1.z * v2.y,
+        y: v1.z * v2.x - v1.x * v2.z,
+        z: v1.x * v2.y - v1.y * v2.x
+    };
+
+    // Normalize the normal vector
+    let magnitude = Math.sqrt(N.x * N.x + N.y * N.y + N.z * N.z);
+    let normalizedN = {
+        x: N.x / magnitude,
+        y: N.y / magnitude,
+        z: N.z / magnitude
+    };
+
+    // Calculate the yaw angle using atan2
+    let yawRadians = Math.atan2(normalizedN.x, normalizedN.z);
+
+    // Convert radians to degrees
+    let yawDegrees = yawRadians * (180 / Math.PI);
+
+    // Ensure the angle is in the range [0, 360)
+    if (yawDegrees < 0) {
+        yawDegrees += 360;
+    }
+
+    return yawDegrees;
+}
+
+function calculateYawAngleY(point1, point2, point3) {
+    // Calculate the vectors v1 and v2
+    let v1 = {
+        x: point2.x - point1.x,
+        y: point2.y - point1.y,
+        z: point2.z - point1.z
+    };
+
+    let v2 = {
+        x: point3.x - point1.x,
+        y: point3.y - point1.y,
+        z: point3.z - point1.z
+    };
+
+    // Calculate the cross product of v1 and v2 to get the normal vector N
+    let N = {
+        x: v1.y * v2.z - v1.z * v2.y,
+        y: v1.z * v2.x - v1.x * v2.z,
+        z: v1.x * v2.y - v1.y * v2.x
+    };
+
+    // Normalize the normal vector
+    let magnitude = Math.sqrt(N.x * N.x + N.y * N.y + N.z * N.z);
+    let normalizedN = {
+        x: N.x / magnitude,
+        y: N.y / magnitude,
+        z: N.z / magnitude
+    };
+
+    // Calculate the yaw angle using atan2
+    let yawRadians = Math.atan2(normalizedN.x, normalizedN.y);
+
+    // Convert radians to degrees
+    let yawDegrees = yawRadians * (180 / Math.PI);
+
+    // Ensure the angle is in the range [0, 360)
+    yawDegrees -= 80;
+
+    // Ensure the angle is in the range [0, 360)
+    if (yawDegrees < 0) {
+        yawDegrees += 360;
+    } else if (yawDegrees >= 360) {
+        yawDegrees -= 360;
+    }
+
+    return yawDegrees;
+}
+const alpha = 0.2; // Smoothing factor (adjust as needed)
+let results = undefined;
+
+// Variables to store the previous smoothed landmarks
+
+let smoothedP1 = {x: 0, y: 0, z:0}; // Thumb
+let smoothedP2 = {x: 0, y: 0, z:0}; //Pinky
+let smoothedP3 = {x: 0, y: 0, z:0}; //Index
+
+function applyLowPassFilter(current, previous) {
+    return {
+        x: previous.x + alpha * (current.x - previous.x),
+        y: previous.y + alpha * (current.y - previous.y),
+        z: previous.z + alpha * (current.z - previous.z),
+    };
+}
+
+
+let planeAngle = {
+    angleX: 0,
+    angleY: 0
+};
+let yangle = 0;
+let xangle = 0;
+
 // Get a reference to the container element that will hold our scene
 const container = document.querySelector("#scene-container");
 // Create a Scene
@@ -17,7 +172,7 @@ const far = 100; // the far clipping plane
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 // Move the camera back so we can view the scene
-camera.position.set(0, 5, 30);
+camera.position.set(0, 10, 30);
 
 const cubematerial = new THREE.MeshStandardMaterial({
   color: new THREE.Color(0xff0000),
@@ -60,6 +215,8 @@ directionalLight.position.set(10, 10, 10);
 directionalLight.target = cube;
 scene.add(directionalLight);
 
+camera.lookAt(cube.position);
+
 const light = new THREE.AmbientLight(0x404040); // soft white light
 scene.add(light);
 
@@ -68,198 +225,142 @@ function onWindowResize() {
 }
 window.addEventListener("resize", onWindowResize);
 
-import {
-  GestureRecognizer,
-  FilesetResolver,
-  DrawingUtils
-} from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3";
-let gestureRecognizer;
-let runningMode = "VIDEO";
-let enableWebcamButton;
-let webcamRunning = false;
-const videoWidth = "480px";
-const videoHeight = "360px";
 
-const createGestureRecognizer = async () => {
-  const vision = await FilesetResolver.forVisionTasks(
-    "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
-  );
-  gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
-    baseOptions: {
-      modelAssetPath:
-        "https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task",
-      delegate: "GPU",
-    },
-    runningMode: runningMode,
-  });
-};
-createGestureRecognizer();
+function animate() {
+//   group.rotation.y += 0.01;
 
-const video = document.getElementById("webcam");
-const canvasElement = document.getElementById("output_canvas");
-const canvasCtx = canvasElement.getContext("2d");
-const gestureOutput = document.getElementById("gesture_output");
-const xOutput = document.getElementById("x_output");
-const yOutput = document.getElementById("y_output");
+  console.log(yangle, xangle );
+  if (yangle && xangle ) {
 
-enableWebcamButton = document.getElementById("webcamButton");
-enableWebcamButton.addEventListener("click", enableCam);
-
-function enableCam(event) {
-  if (!gestureRecognizer) {
-    alert("Please wait for gestureRecognizer to load");
-    return;
-  }
-  if (webcamRunning === true) {
-    webcamRunning = false;
-  } else {
-    webcamRunning = true;
-  }
-  // getUsermedia parameters.
-  const constraints = {
-    video: true,
-  };
-  // Activate the webcam stream.
-  navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
-    video.srcObject = stream;
-    video.addEventListener("loadeddata", predictWebcam);
-  });
+    group.rotation.x = (xangle * Math.PI) / 180; // Convert to radians
+    group.rotation.y = (yangle * Math.PI) / 180; // Convert to radians
 }
-let lastVideoTime = -1;
-let results = undefined;
-async function predictWebcam() {
 
-    console.log("threerender");
+  renderer.render(scene, camera);
 
-    group.rotation.y += 0.1;
-  
-    renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+import { GestureRecognizer, FilesetResolver, DrawingUtils } from 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3';
 
 
-    console.log("webrender")
-  const webcamElement = document.getElementById("webcam");
-  // Now let's start detecting the stream.
-  if (runningMode === "IMAGE") {
-    runningMode = "VIDEO";
-    await gestureRecognizer.setOptions({ runningMode: "VIDEO" });
-  }
+        let gestureRecognizer;
+        let runningMode = 'IMAGE';
+        let enableWebcamButton;
+        let webcamRunning = false;
+        const videoWidth = '380px';
+        const videoHeight = '292px';
 
-  let nowInMs = Date.now();
+        const createGestureRecognizer = async () => {
+         
+            const vision = await FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm');
+            gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
+                baseOptions: {
+                    modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task',
+                    delegate: 'GPU'
+                },
+                runningMode: runningMode,
+            });
+        };
+        createGestureRecognizer();
 
-  if (video.currentTime !== lastVideoTime) {
-    lastVideoTime = video.currentTime;
-    results = gestureRecognizer.recognizeForVideo(video, nowInMs);
-  }
+        const video = document.getElementById('webcam');
+        const canvasElement = document.getElementById('output_canvas');
+        const canvasCtx = canvasElement.getContext('2d');
+        const gestureOutput = document.getElementById('gesture_output');
 
-  canvasCtx.save();
-  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-  const drawingUtils = new DrawingUtils(canvasCtx);
-  canvasElement.style.height = videoHeight;
-  webcamElement.style.height = videoHeight;
-  canvasElement.style.width = videoWidth;
-  webcamElement.style.width = videoWidth;
 
-  if (results.landmarks) {
-    for (const landmarks of results.landmarks) {
-      drawingUtils.drawConnectors(
-        landmarks,
-        GestureRecognizer.HAND_CONNECTIONS,
-        {
-          color: "#00FF00",
-          lineWidth: 5,
+        enableWebcamButton = document.getElementById('webcamButton');
+        enableWebcamButton.addEventListener('click', enableCam);
+
+        function enableCam(event) {
+            if (!gestureRecognizer) {
+                alert('Please wait for gestureRecognizer to load');
+                return;
+            }
+            if (webcamRunning === true) {
+                webcamRunning = false;
+            }
+            else {
+                webcamRunning = true;
+            }
+            // getUsermedia parameters.
+            const constraints = {
+                video: true
+            };
+            // Activate the webcam stream.
+            navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+                video.srcObject = stream;
+                video.addEventListener('loadeddata', predictWebcam);
+            });
         }
-      );
-      drawingUtils.drawLandmarks(landmarks, {
-        color: "#FF0000",
-        lineWidth: 2,
-      });
-    }
-  }
+        let lastVideoTime = -1;
 
-  canvasCtx.restore();
-  if (results.gestures.length > 0) {
-    gestureOutput.style.display = "block";
-    gestureOutput.style.width = videoWidth;
-    gestureOutput.innerText = results.gestures[0][0].categoryName;
+        async function predictWebcam() {
+            const webcamElement = document.getElementById('webcam');
+            // Now let's start detecting the stream.
+            if (runningMode === 'IMAGE') {
+                runningMode = 'VIDEO';
+                await gestureRecognizer.setOptions({ runningMode: 'VIDEO' });
+            }
 
-    parseFloat((xOutput.innerText = results.landmarks[0][0].x.toFixed(2)));
-    parseFloat((yOutput.innerText = results.landmarks[0][0].y.toFixed(2)));
+            let nowInMs = Date.now();
 
-    console.log(gestureOutput.innerText);
-  } else {
-    gestureOutput.style.display = "none";
-  }
+            if (video.currentTime !== lastVideoTime) {
+                lastVideoTime = video.currentTime;
+                results = gestureRecognizer.recognizeForVideo(video, nowInMs);
+            }
 
-    window.requestAnimationFrame(predictWebcam);
-  
-}
-//     async function animate() {
-//       requestAnimationFrame(animate);
+            canvasCtx.save();
+            canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            const drawingUtils = new DrawingUtils(canvasCtx);
+            canvasElement.style.height = videoHeight;
+            webcamElement.style.height = videoHeight;
+            canvasElement.style.width = videoWidth;
+            webcamElement.style.width = videoWidth;
 
-//       // Update webcam predictions less frequently, e.g., every few frames
-//       if (frameCounter % 5 === 0) {
-//           const webcamElement = document.getElementById('webcam');
+            if (results.landmarks.length > 0 ) {
+                const p1 = results.landmarks[0][5];
+                const p2 = results.landmarks[0][17];
+                const p3 = results.landmarks[0][0];
 
-//           if (runningMode === 'IMAGE') {
-//               runningMode = 'VIDEO';
-//               await gestureRecognizer.setOptions({ runningMode: 'VIDEO' });
-//           }
+                
 
-//           let nowInMs = Date.now();
+                planeAngle = calculatePlaneAngles(p1, p2, p3);
+                console.log(planeAngle.angleX, planeAngle.angleY);
 
-//           if (video.currentTime !== lastVideoTime) {
-//               lastVideoTime = video.currentTime;
-//               results = gestureRecognizer.recognizeForVideo(video, nowInMs);
-//           }
+                yangle = calculateYawAngle(p1, p2, p3);
+                xangle = calculateYawAngleY(p1, p2, p3);
+                
+                for (const landmarks of results.landmarks) {
+                    drawingUtils.drawConnectors(landmarks, GestureRecognizer.HAND_CONNECTIONS, {
+                        color: '#00FF00',
+                        lineWidth: 5
+                    });
+                    
+                    drawingUtils.drawLandmarks(landmarks, {
+                        color: '#FF0000',
+                        lineWidth: 2
+                    });
+                }
+            }
 
-//           canvasCtx.save();
-//           canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-//           const drawingUtils = new DrawingUtils(canvasCtx);
-//           canvasElement.style.height = videoHeight;
-//           webcamElement.style.height = videoHeight;
-//           canvasElement.style.width = videoWidth;
-//           webcamElement.style.width = videoWidth;
+            // canvasCtx.restore();
+            if (results.gestures.length > 0) {
+                gestureOutput.style.display = 'block';
+                gestureOutput.style.width = videoWidth;
+                gestureOutput.innerText = results.gestures[0][0].categoryName;
+                
 
-//           if (results.landmarks) {
-//               for (const landmarks of results.landmarks) {
-//                   drawingUtils.drawConnectors(landmarks, GestureRecognizer.HAND_CONNECTIONS, {
-//                       color: '#00FF00',
-//                       lineWidth: 5
-//                   });
-//                   drawingUtils.drawLandmarks(landmarks, {
-//                       color: '#FF0000',
-//                       lineWidth: 2
-//                   });
-//               }
-//           }
+                console.log(gestureOutput.innerText)
+            }
+            else {
+                gestureOutput.style.display = 'none';
+            }
 
-//           canvasCtx.restore();
-//           if (results.gestures.length > 0) {
-//               gestureOutput.style.display = 'block';
-//               gestureOutput.style.width = videoWidth;
-//               gestureOutput.innerText = results.gestures[0][0].categoryName;
-
-//               parseFloat(xOutput.innerText = results.landmarks[0][0].x.toFixed(2));
-//               parseFloat(yOutput.innerText = results.landmarks[0][0].y.toFixed(2));
-
-//               console.log(gestureOutput.innerText);
-//           } else {
-//               gestureOutput.style.display = 'none';
-//           }
-//       }
-
-//       group.rotation.y += 0.01;
-
-//       if (textureVid.readyState >= textureVid.HAVE_FUTURE_DATA) {
-//           textureVid.play();
-//       }
-
-//       controls.update();
-
-//       renderer.render(scene, camera);
-
-//       frameCounter++;
-//   }
-
-//   // Call the combined loop to start both rendering and webcam prediction
-//   animate();
+            if (webcamRunning === true) {
+                window.requestAnimationFrame(predictWebcam);
+            }
+        }
