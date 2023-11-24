@@ -1,0 +1,39 @@
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Skilaverkefni 4 Part2</title>
+    
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@v0.158.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@v0.158.0/examples/jsm/"
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body style="display: flex;">
+    <div width: 50%;>
+        <button id='webcamButton'>ENABLE WEBCAM</button>
+        <div style='position: relative;'>
+            <video id='webcam' autoplay></video>
+            <canvas id='output_canvas' width='480' height='360'
+                style='position: absolute; left: 0px; top: 0px;'></canvas>
+            <h1 id='gesture_output'>
+            <h2>X <span id='x_output'></span></h2>
+            <h2>Y <span id='y_output'></span></h2>
+        </div>
+    </div>
+    <div id="scene-container">
+        <h1> test</h1>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+
+
+</body>
+
+</html>
