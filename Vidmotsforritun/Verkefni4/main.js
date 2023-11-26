@@ -225,12 +225,14 @@ function onWindowResize() {
 }
 window.addEventListener("resize", onWindowResize);
 
+let webcamRunning = false;
 
 function animate() {
 //   group.rotation.y += 0.01;
 
-  console.log(yangle, xangle );
-  if (yangle && xangle ) {
+
+console.log(yangle, xangle);
+  if (true) {
 
     group.rotation.x = (xangle * Math.PI) / 180; // Convert to radians
     group.rotation.y = (yangle * Math.PI) / 180; // Convert to radians
@@ -243,43 +245,69 @@ function animate() {
 
 animate();
 
-import { GestureRecognizer, FilesetResolver, DrawingUtils } from 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3';
+import { GestureRecognizer ,HandLandmarker, FilesetResolver, DrawingUtils } from 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3';
 
 
         let gestureRecognizer;
+        let handLandmarker;
         let runningMode = 'IMAGE';
         let enableWebcamButton;
-        let webcamRunning = false;
+        // let webcamRunning = false;
         const videoWidth = '380px';
         const videoHeight = '292px';
 
-        const createGestureRecognizer = async () => {
+        // const createGestureRecognizer = async () => {
+         
+        //     const vision = await FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm');
+        //     gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
+        //         baseOptions: {
+        //             modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task',
+        //             // modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task',
+
+        //             delegate: 'GPU'
+        //         },
+        //         numHands: 2,
+        //         runningMode: runningMode,
+        //     });
+        // };
+
+        const createHandLandmarker = async () => {
          
             const vision = await FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm');
-            gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
+            handLandmarker = await HandLandmarker.createFromOptions(vision, {
                 baseOptions: {
-                    modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task',
+                    modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task',
+                    // modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task',
+
                     delegate: 'GPU'
                 },
+                numHands: 2,
                 runningMode: runningMode,
             });
         };
-        createGestureRecognizer();
+        // createGestureRecognizer();
+        createHandLandmarker();
+
 
         const video = document.getElementById('webcam');
         const canvasElement = document.getElementById('output_canvas');
         const canvasCtx = canvasElement.getContext('2d');
-        const gestureOutput = document.getElementById('gesture_output');
 
 
         enableWebcamButton = document.getElementById('webcamButton');
         enableWebcamButton.addEventListener('click', enableCam);
 
         function enableCam(event) {
-            if (!gestureRecognizer) {
-                alert('Please wait for gestureRecognizer to load');
+            // if (!gestureRecognizer) {
+            //     alert('Please wait for gestureRecognizer to load');
+            //     return;
+            // }
+
+            if (!handLandmarker) {
+                console.log("Wait for handLandmarker to load before clicking!");
                 return;
-            }
+              }
+            
             if (webcamRunning === true) {
                 webcamRunning = false;
             }
@@ -299,20 +327,33 @@ import { GestureRecognizer, FilesetResolver, DrawingUtils } from 'https://cdn.js
         let lastVideoTime = -1;
 
         async function predictWebcam() {
+
             const webcamElement = document.getElementById('webcam');
             // Now let's start detecting the stream.
-            if (runningMode === 'IMAGE') {
-                runningMode = 'VIDEO';
-                await gestureRecognizer.setOptions({ runningMode: 'VIDEO' });
-            }
+            // if (runningMode === 'IMAGE') {
+            //     runningMode = 'VIDEO';
+            //     await gestureRecognizer.setOptions({ runningMode: 'VIDEO' });
+            // }
+            if (runningMode === "IMAGE") {
+                runningMode = "VIDEO";
+                await handLandmarker.setOptions({ runningMode: "VIDEO" });
+              }
 
             let nowInMs = Date.now();
 
+            // if (video.currentTime !== lastVideoTime) {
+            //     lastVideoTime = video.currentTime;
+            //     results = gestureRecognizer.recognizeForVideo(video, nowInMs);
+            // }
+            let startTimeMs = performance.now();
+
             if (video.currentTime !== lastVideoTime) {
                 lastVideoTime = video.currentTime;
-                results = gestureRecognizer.recognizeForVideo(video, nowInMs);
+
+                results = handLandmarker.detectForVideo(video, startTimeMs);
             }
 
+            
             canvasCtx.save();
             canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
             const drawingUtils = new DrawingUtils(canvasCtx);
@@ -322,18 +363,43 @@ import { GestureRecognizer, FilesetResolver, DrawingUtils } from 'https://cdn.js
             webcamElement.style.width = videoWidth;
 
             if (results.landmarks.length > 0 ) {
-                const p1 = results.landmarks[0][5];
-                const p2 = results.landmarks[0][17];
-                const p3 = results.landmarks[0][0];
+                let r =null;
+                let l = null;
+                
+
+                let telj = 0;
+                for (const hendi of results.handednesses) {
+
+                    if (hendi[0].displayName == "Right") {
+                        r = telj;
+            
+                    } else {
+                        l = telj;
+                    }
+                    telj += 1;
+                }
+                console.log("l", l,"r", r);
+                if (l != null) {
+                    const p1 = results.landmarks[l][5];
+                    const p2 = results.landmarks[l][17];
+                    const p3 = results.landmarks[l][0];
+                    yangle = calculateYawAngle(p1, p2, p3);
+
+                }
+                if (r != null) {
+                    const p21 = results.landmarks[r][5];
+                    const p22 = results.landmarks[r][17];
+                    const p23 = results.landmarks[r][0];
+                    xangle = calculateYawAngle(p21, p22, p23);
+
+                }
+
 
                 
 
-                planeAngle = calculatePlaneAngles(p1, p2, p3);
-                console.log(planeAngle.angleX, planeAngle.angleY);
-
-                yangle = calculateYawAngle(p1, p2, p3);
-                xangle = calculateYawAngleY(p1, p2, p3);
+                   
                 
+
                 for (const landmarks of results.landmarks) {
                     drawingUtils.drawConnectors(landmarks, GestureRecognizer.HAND_CONNECTIONS, {
                         color: '#00FF00',
@@ -347,18 +413,9 @@ import { GestureRecognizer, FilesetResolver, DrawingUtils } from 'https://cdn.js
                 }
             }
 
-            // canvasCtx.restore();
-            if (results.gestures.length > 0) {
-                gestureOutput.style.display = 'block';
-                gestureOutput.style.width = videoWidth;
-                gestureOutput.innerText = results.gestures[0][0].categoryName;
-                
+            canvasCtx.restore();
 
-                console.log(gestureOutput.innerText)
-            }
-            else {
-                gestureOutput.style.display = 'none';
-            }
+            
 
             if (webcamRunning === true) {
                 window.requestAnimationFrame(predictWebcam);

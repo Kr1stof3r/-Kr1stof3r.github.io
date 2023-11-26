@@ -115,3 +115,14 @@ section {
     display: inline-block;
     width: 50%;
 }
+ 
+.palmicon {
+  height: 50px;
+  width: auto;
+
+}
+
+.iconcon {
+  display: inline-block;
+  font-weight: bold;
+}
