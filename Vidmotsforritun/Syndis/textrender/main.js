@@ -7,7 +7,7 @@ function progressiveUncrop() {
 
         image.style.clipPath = `inset(0% ${insetValue}% 0% 0%)`;
 
-        setTimeout(progressiveUncrop, 50);
+        setTimeout(progressiveUncrop, 40);
     }
 }
 
@@ -46,7 +46,7 @@ function typeWrite() {
             progressiveUncrop();
         }
         i++;    
-        setTimeout(typeWrite, 100);
+        setTimeout(typeWrite, 70);
     }
 }
 
