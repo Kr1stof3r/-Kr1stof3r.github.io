@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Roboto+Mono&display=swap');
+
+
+body {
+    margin: 0;
+    background-image: url(./background1.jpg);
+    background-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Bree Serif', serif;
+    font-family: 'Roboto Mono', monospace;  
+
+
+}
+
+#image {
+        position: absolute;
+        top: -10px;
+        clip-path: inset(0% 100% 0% 0%);
+        height: 2em; 
+        transition: opacity 1s ease;
+        
+    }
+
+#tbox {
+        position: relative; 
+        color: #cdcdcd;
+        text-shadow: rgba(219,255,178,1.0) 0px 0px 12px;
+        font-size: 1.5em;
+
+
+    }
+#hide {
+    opacity: 0;
+} 
+
+#container {
+    width: 35%;
+    height: 10%;
+
+}
+
+#disc {
+    color: #43D1F8;
+    font-size: 0.7em;
+    text-shadow: #43D1F8 0px 0px 10px;
+
+}
